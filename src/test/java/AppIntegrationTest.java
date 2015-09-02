@@ -76,10 +76,17 @@ public class AppIntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("E.L. Jim");
   }
 
-  @Test
-  public void authorIsAddedToBook() {
-
-  }
+  // @Test
+  // public void authorIsAddedToBook() {
+  //   Author testAuthor = new Author("E.L. Jim");
+  //   testAuthor.save();
+  //   Book testBook = new Book("50 Shades of Green");
+  //   testBook.save();
+  //   goTo("http://localhost:4567/books/");
+  //   click("a", withText("50 Shades of Green"));
+  //   submit(".btn");
+  //   assertThat(pageSource()).contains("E.L. Jim");
+  // }
 
 
 

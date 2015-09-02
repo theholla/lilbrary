@@ -2,8 +2,8 @@
 
 #if ($editBook)
     <form action="/books/$editBook.getId()/edit" method="post">
-      <label for="name">Edit book:</label>
-      <input id="name" name="name" type="text" value="$editBook.getName()">
+      <label for="title">Edit book:</label>
+      <input id="title" name="title" type="text" value="$editBook.getTitle()">
       <button type="submit" class="btn btn-primary">Edit book</button>
     </form>
 #else
