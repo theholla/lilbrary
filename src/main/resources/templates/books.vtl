@@ -1,0 +1,44 @@
+<h1 class="text-center">Books</h1>
+
+#if ($editBook)
+    <form action="/books/$editBook.getId()/edit" method="post">
+      <label for="name">Edit book:</label>
+      <input id="name" name="name" type="text" value="$editBook.getName()">
+      <button type="submit" class="btn btn-primary">Edit book</button>
+    </form>
+#else
+    <p>Add a new book:</p>
+
+    <form action="/books" method="post">
+      <label for="title">Book Name</label>
+      <input id="title" name="title" type="text">
+      <button type="submit" class="btn btn-primary">Add book</button>
+    </form>
+    <br>
+
+    <table border="1" class="table table-striped">
+      <th>Current books:</th>
+      <th>Authors:</th>
+      <th>Edit:</th>
+      <th>Delete:</th>
+      <tbody>
+      #foreach ($book in $books)
+      <tr>
+        <td><a href="/books/$book.getId()">$book.getTitle()</a></td>
+          <td>
+            #if($book.getAuthors())
+              <ul>
+                #foreach($author in $book.getAuthors())
+                  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+                #end
+              </ul>
+            #end
+          </td>
+          <td><a href="/books/$book.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+          <td><a href="/books/$book.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        #end
+    </tbody>
+  </table>
+  #end
+  <br>

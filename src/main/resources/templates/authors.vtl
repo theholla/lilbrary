@@ -1,0 +1,27 @@
+<h1>Authors</h1>
+
+#if ($editAuthor)
+    <form action="/authors/$editAuthor.getId()/edit" method="post">
+      <label for="name">Edit author:</label>
+      <input id="name" name="name" type="text" value="$editAuthor.getName()">
+      <button type="submit" class="btn btn-success">Edit author</button>
+    </form>
+#else
+
+<p>Add a new author:</p>
+
+<form action="/authors" method="post">
+  <label for="name">Add a author:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit" class="btn btn-success">Add author</button>
+</form>
+<br>
+Authors:
+<ol>
+#foreach ($author in $authors)
+
+ <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+#end
+#end
+</ol>
