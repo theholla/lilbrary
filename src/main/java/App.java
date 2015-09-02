@@ -126,7 +126,42 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/authors/:id/edit", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Author editAuthor = Author.find(id);
+      model.put("editAuthor", editAuthor);
+      List<Author> authors = Author.all();
+      model.put("authors", authors);
+      model.put("allBooks", Book.all());
+      model.put("template", "templates/authors.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
+    post("/authors/:id/edit", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Author editAuthor = Author.find(id);
+      String name = request.queryParams("name");
+      editAuthor.update(name);
+      List<Author> authors = Author.all();
+      model.put("authors", authors);
+      model.put("allBooks", Book.all());
+      model.put("template", "templates/authors.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/books/:id/delete", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Book deleteBook = Book.find(id);
+      deleteBook.delete(id);
+      List<Book> books = Book.all();
+      model.put("books", books);
+      model.put("allAuthors", Author.all());
+      model.put("template", "templates/books.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
 
   }

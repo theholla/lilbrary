@@ -19,7 +19,7 @@ public class Author {
   }
 
   public static List<Author> all() {
-    String sql = "SELECT id, name FROM Authors";
+    String sql = "SELECT id, name FROM Authors ORDER BY name ASC";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Author.class);
     }

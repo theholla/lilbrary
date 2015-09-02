@@ -39,7 +39,7 @@ public class AppIntegrationTest extends FluentTest {
   public void authorFormIsDisplayed() {
     goTo("http://localhost:4567/");
     click("a", withText("Add or view an author"));
-    assertThat(pageSource()).contains("Add a new author");
+    assertThat(pageSource()).contains("Add author");
   }
 
   @Test
@@ -83,9 +83,18 @@ public class AppIntegrationTest extends FluentTest {
   //   Book testBook = new Book("50 Shades of Green");
   //   testBook.save();
   //   goTo("http://localhost:4567/books/");
-  //   click("a", withText("50 Shades of Green"));
+  //   fillSelect("author_id").withIndex(0); //PROBLEM
   //   submit(".btn");
   //   assertThat(pageSource()).contains("E.L. Jim");
+  // }
+
+  // @Test
+  // public void bookIsDeleted() {
+  //   Book myBook = new Book("Harry Potter");
+  //   myBook.save();
+  //   goTo("http://localhost:4567/books");
+  //   click("/books/$book.getId()/delete");
+  //   assertThat(pageSource()).doesNotContain("Harry Potter");
   // }
 
 
