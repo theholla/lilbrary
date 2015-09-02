@@ -1,0 +1,12 @@
+<h1>Add a student to $course.getName()</h1>
+
+<form action="/students" method="post">
+  <input id="courseId" name="courseId" type="hidden" value="$course.getId()">
+
+  <div class="form-group">
+    <label for="name">Student</label>
+    <input id="name" name="name" type="text" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add student</button>
+</form>

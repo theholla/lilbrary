@@ -1,0 +1,28 @@
+<h1>Courses</h1>
+
+#if ($editCourse)
+    <form action="/courses/$editCourse.getId()/edit" method="post">
+      <label for="name_number">Edit course:</label>
+      <input id="name_number" name="name_number" type="text" value="$editCourse.getName()">
+      <button type="submit" class="btn btn-success">Edit course</button>
+    </form>
+#else
+
+<p>Add a new course:</p>
+
+<form action="/courses" method="post">
+  <label for="name_number">Add a course:</label>
+  <input id="name_number" name="name_number" type="text">
+
+  <button type="submit" class="btn btn-success">Add course</button>
+</form>
+<br>
+Courses:
+<ol>
+#foreach ($course in $courses)
+
+ <li><a href="/courses/$course.getId()">$course.getName()</a></li>
+#end
+#end
+</ol>
+<p><a href='/'>Home</a></p>

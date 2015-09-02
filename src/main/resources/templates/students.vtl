@@ -1,0 +1,48 @@
+<h1 class="text-center">Students</h1>
+
+#if ($editStudent)
+    <form action="/students/$editStudent.getId()/edit" method="post">
+      <label for="name">Edit student:</label>
+      <input id="name" name="name" type="text" value="$editStudent.getName()">
+      <input type="date" name="enrollmentDate" value="$editStudent.getEnrollmentDate()">
+      <button type="submit">Edit student</button>
+    </form>
+#else
+    <p>Add a new student:</p>
+
+    <form action="/students" method="post">
+      <label for="name">Student Name</label>
+      <input id="name" name="name" type="text">
+      <label for="enrollmentDate">Enrollment Date</label>
+          <input type="date" name="enrollmentDate">
+      <button type="submit">Add student</button>
+    </form>
+    <br>
+
+    <table border="1" class="table table-striped">
+      <th>Current students:</th>
+      <th>Enrolled in courses:</th>
+      <th>Edit:</th>
+      <th>Delete:</th>
+      <tbody>
+      #foreach ($student in $students)
+      <tr>
+        <td><a href="/students/$student.getId()">$student.getName()</a> Enrollment Date: $student.getEnrollmentDate()</td>
+          <td>
+            #if($student.getCourses())
+              <ul>
+                #foreach($course in $student.getCourses())
+                  <li><a href="/courses/$course.getId()">$course.getName()</a></li>
+                #end
+              </ul>
+            #end
+          </td>
+          <td><a href="/students/$student.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+          <td><a href="/students/$student.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        #end
+    </tbody>
+  </table>
+  #end
+  <br>
+<p><a href='/'>Home</a></p>
