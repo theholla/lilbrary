@@ -56,6 +56,9 @@ public class App {
       Patron patron = Patron.find(id);
       model.put("patron", patron);
       model.put("allPatrons", Patron.all());
+      List<Book> books = Book.all();
+      model.put("books", books);
+      model.put("allAuthors", Author.all());
       model.put("template", "templates/patron.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());

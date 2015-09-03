@@ -31,14 +31,14 @@ public class AppIntegrationTest extends FluentTest {
   @Test
   public void bookFormIsDisplayed() {
     goTo("http://localhost:4567/");
-    click("a", withText("Add or view a book"));
+    click("a", withText("Books"));
     assertThat(pageSource()).contains("Add a new book");
   }
 
   @Test
   public void authorFormIsDisplayed() {
     goTo("http://localhost:4567/");
-    click("a", withText("Add or view an author"));
+    click("a", withText("Authors"));
     assertThat(pageSource()).contains("Add author");
   }
 
