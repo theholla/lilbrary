@@ -1,0 +1,58 @@
+<h4 class="right">You are logged in as $patron.getName()</h4>
+
+      <h4><a href="/">Check out a book   <span class="glyphicon glyphicon-book"></span></a></h4>
+      <h4><a href="/">Checked Out   <span class="glyphicon glyphicon-check"></span></a></h4>
+      <h4><a href="/">History   <span class="glyphicon glyphicon-list"></span></a></h4>
+
+
+<!-- List of current checkouts -->
+<table border="2" class="table table-hover">
+  <th>Checked Out</th>
+  <th>Checkout Date</th>
+  <th>Due Date</th>
+  <th>Renew</th>
+  <tbody>
+  #foreach ($book in $books)
+    <tr>
+      <td><a href="/books/$book.getId()">$book.getTitle()</a><br>
+          #if($book.getAuthors())
+              #foreach($author in $book.getAuthors())
+                by <a href="/authors/$author.getId()"> $author.getName()</a>
+              #end
+          #end</td>
+      <td>$book.getCheckoutDate()</td>
+      <td>$book.getDueDate()</td>
+      <td><a href="/books/$book.getId()/edit"><span class="glyphicon glyphicon-ok"></span></a>
+    </tr>
+  #end
+</tbody>
+</table>
+
+
+<!-- Choose a book to request and check out -->
+
+<h1>Books</h1>
+
+    <table border="2" class="table table-hover">
+      <th>Books</th>
+      <th>Authors</th>
+      <th>Checkout</th>
+      <tbody>
+      #foreach ($book in $books)
+      <tr>
+        <td><a href="/books/$book.getId()">$book.getTitle()</a></td>
+          <td>
+            #if($book.getAuthors())
+              <ul>
+                #foreach($author in $book.getAuthors())
+                  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+                #end
+              </ul>
+            #end
+          </td>
+          <td><a href="/books/$book.getId()/delete"><span class="glyphicon glyphicon-ok"></span></a></td>
+        </tr>
+        #end
+    </tbody>
+  </table>
+  #end

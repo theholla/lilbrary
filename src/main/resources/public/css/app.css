@@ -7,3 +7,12 @@ img.center {
   margin-left: auto;
   margin-right: auto;
 }
+
+.right {
+  text-align: right;
+}
+
+.glyphicon {
+  margin-right: 5px;
+  margin-left: 5px;
+}

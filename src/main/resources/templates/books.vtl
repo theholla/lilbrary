@@ -16,22 +16,20 @@
     </form>
     <br>
 
-    <table border="1" class="table table-striped">
-      <th>Current books:</th>
-      <th>Authors:</th>
-      <th>Edit:</th>
-      <th>Delete:</th>
+    <table border="2" class="table table-hover">
+      <th>Current books</th>
+      <th>Authors</th>
+      <th>Edit</th>
+      <th>Delete</th>
       <tbody>
       #foreach ($book in $books)
       <tr>
         <td><a href="/books/$book.getId()">$book.getTitle()</a></td>
           <td>
             #if($book.getAuthors())
-              <ul>
                 #foreach($author in $book.getAuthors())
-                  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+                  <a href="/authors/$author.getId()">$author.getName()</a>
                 #end
-              </ul>
             #end
           </td>
           <td><a href="/books/$book.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -41,4 +39,3 @@
     </tbody>
   </table>
   #end
-  <br>
