@@ -13,7 +13,7 @@ public class App {
     get("/", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       List<Patron> patrons = Patron.all();
-      model.put("patrons", patrons);    
+      model.put("patrons", patrons);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -50,7 +50,15 @@ public class App {
     });
 
     /* Index --> Patron page */
-
+    get("/patrons/:id", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Patron patron = Patron.find(id);
+      model.put("patron", patron);
+      model.put("allPatrons", Patron.all());
+      model.put("template", "templates/patron.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
     /* List of books -> POST a new book*/
     post("/books", (request, response) -> {
