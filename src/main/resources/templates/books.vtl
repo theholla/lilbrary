@@ -1,20 +1,23 @@
 <h1>Books</h1>
 
 #if ($editBook)
+    Oops! Did we have the wrong book title?
     <form action="/books/$editBook.getId()/edit" method="post">
-      <label for="title">Edit book:</label>
+      <label for="title">Please type the correct title:</label>
       <input id="title" name="title" type="text" value="$editBook.getTitle()">
       <button type="submit" class="btn btn-primary">Edit book</button>
     </form>
 #else
-    <p>Add a new book:</p>
+
+  <h4>Add a new book to the Lil'brary:</h4>
 
     <form action="/books" method="post">
-      <label for="title">Book Name</label>
+      <label for="title">Book Title</label>
       <input id="title" name="title" type="text">
       <button type="submit" class="btn btn-primary">Add book</button>
     </form>
-    <br>
+
+<hr/>
 
     <table border="2" class="table table-hover">
       <th>Current books</th>
@@ -27,9 +30,11 @@
         <td><a href="/books/$book.getId()">$book.getTitle()</a></td>
           <td>
             #if($book.getAuthors())
+              <ul>
                 #foreach($author in $book.getAuthors())
-                  <a href="/authors/$author.getId()">$author.getName()</a>
+                  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
                 #end
+              </ul>
             #end
           </td>
           <td><a href="/books/$book.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>

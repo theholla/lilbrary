@@ -1,7 +1,15 @@
-<h1>$book.getTitle()</h1>
+<h2>Book: $book.getTitle() <a href="/books/$book.getId()/edit">
+                                  <span class="glyphicon glyphicon-cog"></span></a></h2>
+
+Book synopsis: $book.getTitle() was one of the most important works of fiction in the 20th
+century.Sed ligula ligula, fermentum ut scelerisque vitae, cursus sed purus. Morbi faucibus
+sapien non augue cursus pellentesque. Duis tincidunt egestas vestibulum. Vivamus
+condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sagittis massa.
+
+<hr/>
 
 #if($book.getAuthors())
-  <p>Here are the Authors for this book:</p>
+  <p>This book was written by:</p>
   <ul>
     #foreach($author in $book.getAuthors())
       <li>$author.getName()</li>
@@ -9,7 +17,9 @@
   </ul>
 #end
 
-<h4>Add a author to this book:</h4>
+<hr/>
+
+<h4>Did another author contribute to this book? Add them here:</h4>
 
 <form action='/add_authors' method='post'>
     <input id="book_id" name="book_id" type="hidden" value="$book.getId()">
@@ -19,7 +29,5 @@
         <option value="$author.getId()"> $author.getName() </option>
       #end
     </select>
-    <button type='submit'>Add author</button>
+    <button type='submit' class="btn btn-success">Add author</button>
 </form>
-
-<p><a href="/books/$book.getId()/edit">Edit this book</a></p>

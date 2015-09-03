@@ -1,7 +1,15 @@
-<h1>$author.getName()</h1>
+<h2>Author: $author.getName() <a href="/authors/$author.getId()/edit">
+                                  <span class="glyphicon glyphicon-cog"></span></a></h2>
+
+Author Bio: $author.getName() was one of the most important writers of the 20th century. Sed
+ligula ligula, fermentum ut scelerisque vitae, cursus sed purus. Morbi faucibus
+sapien non augue cursus pellentesque. Duis tincidunt egestas vestibulum. Vivamus
+condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sagittis massa.
+
+<hr/>
 
 #if($author.getBooks())
-  <p>Here are the books for this author:</p>
+  <p>This author has the following books in our library:</p>
   <ol>
     #foreach($book in $author.getBooks())
       <li>$book.getTitle()</li>
@@ -9,7 +17,9 @@
   </ol>
 #end
 
-<h4>Add a book to this author:</h4>
+<hr/>
+
+<h4>Did this author write a new book? Add it to the catalog:</h4>
 
 <form action='/add_books' method='post'>
     <input id="author_id" name="author_id" type="hidden" value="$author.getId()">
@@ -19,7 +29,5 @@
         <option value="$book.getId()"> $book.getTitle() </option>
       #end
     </select>
-    <button type='submit' class="btn btn-success">Add book</button>
+    <button type='submit' class="btn btn-primary">Add book</button>
 </form>
-
-<p><a href="/authors/$author.getId()/edit">Edit this author</a></p>

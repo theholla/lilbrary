@@ -1,25 +1,30 @@
 <h1>Authors</h1>
 
 #if ($editAuthor)
-    <form action="/authors/$editAuthor.getId()/edit" method="post">
-      <label for="name">Edit author:</label>
-      <input id="name" name="name" type="text" value="$editAuthor.getName()">
-      <button type="submit" class="btn btn-success">Edit author</button>
-    </form>
+Oops! Is this author's name incorrect?
+<form action="/authors/$editAuthor.getId()/edit" method="post">
+  <label for="name">Please type their correct name:</label>
+  <input id="name" name="name" type="text" value="$editAuthor.getName()">
+  <button type="submit" class="btn btn-success">Edit author</button>
+</form>
 #else
+
+<h4>Include a new author in the Lil'brary:</h4>
 
 <form action="/authors" method="post">
   <label for="name">Add author:</label>
   <input id="name" name="name" type="text">
-
   <button type="submit" class="btn btn-success">Add author</button>
 </form>
-<br>
+
+
+<hr/>
+
 Authors:
 <ol>
-#foreach ($author in $authors)
+  #foreach ($author in $authors)
 
- <li><a href="/authors/$author.getId()">$author.getName()</a></li>
-#end
-#end
+  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+  #end
+  #end
 </ol>
