@@ -10,9 +10,10 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
-
     get("/", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
+      List<Patron> patrons = Patron.all();
+      model.put("patrons", patrons);    
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -35,6 +36,21 @@ public class App {
       model.put("template", "/templates/authors.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+
+    /* Index --> POST a new patron*/
+    post("/patron/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      String phone = request.queryParams("phone");
+      Patron newPatron = new Patron(name, phone);
+      newPatron.save();
+      response.redirect("/");
+      return null;
+    });
+
+    /* Index --> Patron page */
+
 
     /* List of books -> POST a new book*/
     post("/books", (request, response) -> {

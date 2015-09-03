@@ -3,24 +3,43 @@
 </head>
 <body>
     <h1 class="text-center">... a little library catalog</h1>
+    <!-- Welcome -->
 
+    <h4>Hey Community Members! Click your name to see your reading history.</h4>
+
+    <table border="2" class="table table-hover">
+      <th>Patron</th>
+      <th>Phone</th>
+      <th>Update Information</th>
+      <th>Quit the Lil'brary</th>
+      <tbody>
+      #foreach ($patron in $patrons)
+      <tr>
+        <td><a href="/patrons/$patron.getId()">$patron.getName()</a></td>
+          <td><a href="/patrons/$patron.getId()">$patron.getPhone()</a></td>
+          <td><a href="/books/$patron.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+          <td><a href="/books/$patron.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+      #end
+    </tbody>
+  </table>
 
     <!-- Patron log in form -->
-    
-    <div class="row">
-        <div class="col-med-6">
-            <form action="/books">
+
+            <form action="/patron/:id" method='post'>
+              <input id="patronId" name="patronId" type="hidden" value="$patron.getId()">
+
                 <div class="form-group row">
+                  <h3>Get a Lil'brary card</h3>
                     <div class="col-xs-3">
-                        <h3>Log in</h3>
-                        <label for="">Username or Barcode</label>
-                        <input type="" class="form-control" id="" placeholder="">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" class="form-control" id="" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-xs-3">
-                        <label for="">Password</label>
-                        <input type="" class="form-control" id="" placeholder="">
+                        <label for="phone">Phone number</label>
+                        <input id="phone" name="phone" type="text" class="form-control" id="" placeholder="">
                     </div>
                 </div>
                 <div class="checkbox">
@@ -28,18 +47,15 @@
                         <input type="checkbox"> Remember me on this computer
                     </label>
                 </div>
-                <button type="submit" class="btn btn-default">Log In</button>
+                <button type="submit" class="btn btn-default">Join</button>
             </form>
-        </div>
 
         <hr/>
 
         <!-- Librarian Portal -->
 
-        <div class="col-med6">
             <h3>Librarian Portal</h3>
             <h4><a href="/books">Update library catalog<span class="glyphicon glyphicon-book"></span></a></h4>
             <h4><a href="/authors">Find an author<span class="glyphicon glyphicon-user"></span></a></h4>
-        </div>
-    </div>
+
 </body>
