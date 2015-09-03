@@ -36,7 +36,7 @@ public class Copy {
     }
   }
 
-  public static boolean checkedout(){
+  public static boolean isCheckedOut(){
     return true;
   }
 
@@ -51,7 +51,7 @@ public class Copy {
   }
 
 
-  public static List<Copy> allCheckedout() {
+  public static List<Copy> allCheckedoutCopies() {
     String sql = "SELECT id, book_id FROM copies WHERE checkedout = true";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Copy.class);

@@ -94,25 +94,25 @@ public class Patron {
   //   }
   // }
 
-  // public ArrayList<Copy> getCopies() {
-  //   try(Connection con = DB.sql2o.open()){
-  //     String sql = "SELECT copy_id FROM checkouts WHERE patron_id = :patron_id";
-  //     List<Integer> copy_ids = con.createQuery(sql)
-  //     .addParameter("patron_id", this.getId())
-  //     .executeAndFetch(Integer.class);
-  //
-  //     ArrayList<Copy> copies = new ArrayList<Copy>();
-  //
-  //     for (Integer copy_id : copy_ids) {
-  //       String patronQuery = "Select * From copies WHERE id = :copy_id";
-  //       Copy copy = con.createQuery(patronQuery)
-  //       .addParameter("copy_id", copy_id)
-  //       .executeAndFetchFirst(Copy.class);
-  //       copys.add(copy);
-  //     }
-  //     return copies;
-  //   }
-  // }
+  public ArrayList<Copy> getCopies() {
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT copy_id FROM checkouts WHERE patron_id = :patron_id";
+      List<Integer> copy_ids = con.createQuery(sql)
+      .addParameter("patron_id", this.getId())
+      .executeAndFetch(Integer.class);
+
+      ArrayList<Copy> copies = new ArrayList<Copy>();
+
+      for (Integer copy_id : copy_ids) {
+        String patronQuery = "Select * From copies WHERE id = :copy_id";
+        Copy copy = con.createQuery(patronQuery)
+        .addParameter("copy_id", copy_id)
+        .executeAndFetchFirst(Copy.class);
+        copys.add(copy);
+      }
+      return copies;
+    }
+  }
 
   // public void delete() {
   //   try(Connection con = DB.sql2o.open()) {

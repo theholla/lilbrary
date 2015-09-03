@@ -191,5 +191,23 @@ public class App {
     }, new VelocityTemplateEngine());
 
 
+    get("/copies/:id/checkedout", (request,response) -> {
+     HashMap<String, Object> model = new HashMap<String, Object>();
+     int id = Integer.parseInt(request.params("id"));
+     Copy copy = Copy.find(id);
+     Copy patronCopy = copy.addPatron();
+     patronCopy.checkOut(patronCopy.isCheckedOut());
+
+     ArrayList<Copy> patronCopies = Copy.getCopies();
+     model.put("patronCopies", patronCopies);
+
+     List<Copy> allLibraryCheckouts = Copy.allCheckedoutCopies();
+     model.put("allCheckedout", allLibraryCheckouts);
+     model.put("allPatrons", Patron.all());
+     model.put("template", "templates/patron.vtl");
+     return new ModelAndView(model, layout);
+   }, new VelocityTemplateEngine());
+
+
   }
 }
