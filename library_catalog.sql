@@ -136,9 +136,7 @@ ALTER SEQUENCE books_id_seq OWNED BY books.id;
 CREATE TABLE checkouts (
     id integer NOT NULL,
     patron_id integer,
-    copy_id integer,
-    checkout_date character varying,
-    due_date character varying
+    copy_id integer
 );
 
 
@@ -172,7 +170,8 @@ ALTER SEQUENCE checkouts_id_seq OWNED BY checkouts.id;
 CREATE TABLE copies (
     id integer NOT NULL,
     book_id integer,
-    available boolean
+    due_date character varying,
+    checkedout boolean
 );
 
 
@@ -205,7 +204,8 @@ ALTER SEQUENCE copies_id_seq OWNED BY copies.id;
 
 CREATE TABLE patrons (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    phone character varying
 );
 
 
@@ -279,6 +279,14 @@ ALTER TABLE ONLY patrons ALTER COLUMN id SET DEFAULT nextval('patrons_id_seq'::r
 --
 
 COPY authors (id, name) FROM stdin;
+8	Shirley Temple
+9	King Charles
+10	Shelly Strunk
+11	Nathan Frost
+12	Momoko Saunders
+13	Mulan
+15	Jennifer Morkunas
+14	Jake Ka
 \.
 
 
@@ -296,6 +304,20 @@ COPY authors_books (id, author_id, book_id) FROM stdin;
 7	2	4
 8	7	7
 9	4	8
+10	12	10
+11	9	11
+12	14	14
+13	14	16
+14	14	15
+15	14	17
+16	14	14
+17	14	18
+18	15	18
+19	9	18
+20	14	17
+21	14	15
+22	14	10
+23	14	12
 \.
 
 
@@ -303,14 +325,14 @@ COPY authors_books (id, author_id, book_id) FROM stdin;
 -- Name: authors_books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('authors_books_id_seq', 9, true);
+SELECT pg_catalog.setval('authors_books_id_seq', 23, true);
 
 
 --
 -- Name: authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('authors_id_seq', 7, true);
+SELECT pg_catalog.setval('authors_id_seq', 15, true);
 
 
 --
@@ -318,6 +340,12 @@ SELECT pg_catalog.setval('authors_id_seq', 7, true);
 --
 
 COPY books (id, title) FROM stdin;
+9	The Wind That Shakes The Barley
+10	The Wind In The Willows
+11	Moby Dick
+12	The Dictionary
+15	SQL Basics
+17	The Age Of Android
 \.
 
 
@@ -325,14 +353,14 @@ COPY books (id, title) FROM stdin;
 -- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('books_id_seq', 8, true);
+SELECT pg_catalog.setval('books_id_seq', 19, true);
 
 
 --
 -- Data for Name: checkouts; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY checkouts (id, patron_id, copy_id, checkout_date, due_date) FROM stdin;
+COPY checkouts (id, patron_id, copy_id) FROM stdin;
 \.
 
 
@@ -347,7 +375,7 @@ SELECT pg_catalog.setval('checkouts_id_seq', 1, false);
 -- Data for Name: copies; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY copies (id, book_id, available) FROM stdin;
+COPY copies (id, book_id, due_date, checkedout) FROM stdin;
 \.
 
 
@@ -362,7 +390,16 @@ SELECT pg_catalog.setval('copies_id_seq', 1, false);
 -- Data for Name: patrons; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY patrons (id, name) FROM stdin;
+COPY patrons (id, name, phone) FROM stdin;
+1	Sheilah Quimby	444-321-7242
+2	Sheilah Quimby	444-321-7242
+3	Sherry Alam	555-444-3333
+4	Susan	444-333-2222
+5	Ron Weasley	444-321-7242
+6	Lola	555-442-3333
+7	Nataliya	444-222-1112
+8	Ashley	333-333-2242
+9	Lola 2	444-321-7242
 \.
 
 
@@ -370,7 +407,7 @@ COPY patrons (id, name) FROM stdin;
 -- Name: patrons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('patrons_id_seq', 1, false);
+SELECT pg_catalog.setval('patrons_id_seq', 9, true);
 
 
 --

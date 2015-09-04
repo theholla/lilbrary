@@ -136,9 +136,7 @@ ALTER SEQUENCE books_id_seq OWNED BY books.id;
 CREATE TABLE checkouts (
     id integer NOT NULL,
     patron_id integer,
-    copy_id integer,
-    checkout_date character varying,
-    due_date character varying
+    copy_id integer
 );
 
 
@@ -172,7 +170,8 @@ ALTER SEQUENCE checkouts_id_seq OWNED BY checkouts.id;
 CREATE TABLE copies (
     id integer NOT NULL,
     book_id integer,
-    available boolean
+    due_date character varying,
+    checkedout boolean
 );
 
 
@@ -205,7 +204,8 @@ ALTER SEQUENCE copies_id_seq OWNED BY copies.id;
 
 CREATE TABLE patrons (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    phone character varying
 );
 
 
@@ -287,15 +287,6 @@ COPY authors (id, name) FROM stdin;
 --
 
 COPY authors_books (id, author_id, book_id) FROM stdin;
-1	1	2
-2	2	2
-3	1	2
-4	1	2
-5	1	1
-6	1	2
-7	2	4
-8	7	7
-9	4	8
 \.
 
 
@@ -303,14 +294,14 @@ COPY authors_books (id, author_id, book_id) FROM stdin;
 -- Name: authors_books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('authors_books_id_seq', 9, true);
+SELECT pg_catalog.setval('authors_books_id_seq', 37, true);
 
 
 --
 -- Name: authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('authors_id_seq', 7, true);
+SELECT pg_catalog.setval('authors_id_seq', 45, true);
 
 
 --
@@ -325,14 +316,14 @@ COPY books (id, title) FROM stdin;
 -- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('books_id_seq', 8, true);
+SELECT pg_catalog.setval('books_id_seq', 52, true);
 
 
 --
 -- Data for Name: checkouts; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY checkouts (id, patron_id, copy_id, checkout_date, due_date) FROM stdin;
+COPY checkouts (id, patron_id, copy_id) FROM stdin;
 \.
 
 
@@ -340,14 +331,14 @@ COPY checkouts (id, patron_id, copy_id, checkout_date, due_date) FROM stdin;
 -- Name: checkouts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('checkouts_id_seq', 1, false);
+SELECT pg_catalog.setval('checkouts_id_seq', 6, true);
 
 
 --
 -- Data for Name: copies; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY copies (id, book_id, available) FROM stdin;
+COPY copies (id, book_id, due_date, checkedout) FROM stdin;
 \.
 
 
@@ -355,14 +346,14 @@ COPY copies (id, book_id, available) FROM stdin;
 -- Name: copies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('copies_id_seq', 1, false);
+SELECT pg_catalog.setval('copies_id_seq', 15, true);
 
 
 --
 -- Data for Name: patrons; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY patrons (id, name) FROM stdin;
+COPY patrons (id, name, phone) FROM stdin;
 \.
 
 
@@ -370,7 +361,7 @@ COPY patrons (id, name) FROM stdin;
 -- Name: patrons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('patrons_id_seq', 1, false);
+SELECT pg_catalog.setval('patrons_id_seq', 17, true);
 
 
 --

@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.ArrayList;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
@@ -195,10 +195,11 @@ public class App {
      HashMap<String, Object> model = new HashMap<String, Object>();
      int id = Integer.parseInt(request.params("id"));
      Copy copy = Copy.find(id);
-     Copy patronCopy = copy.addPatron();
-     patronCopy.checkOut(patronCopy.isCheckedOut());
+     Patron patron = Patron.find(id);
+     copy.addPatron(patron);
+     copy.checkOut(copy.isCheckedOut());
 
-     ArrayList<Copy> patronCopies = Copy.getCopies();
+     ArrayList<Copy> patronCopies = patron.getCopies();
      model.put("patronCopies", patronCopies);
 
      List<Copy> allLibraryCheckouts = Copy.allCheckedoutCopies();

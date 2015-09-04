@@ -108,7 +108,7 @@ public class Patron {
         Copy copy = con.createQuery(patronQuery)
         .addParameter("copy_id", copy_id)
         .executeAndFetchFirst(Copy.class);
-        copys.add(copy);
+        copies.add(copy);
       }
       return copies;
     }
