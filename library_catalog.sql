@@ -279,14 +279,6 @@ ALTER TABLE ONLY patrons ALTER COLUMN id SET DEFAULT nextval('patrons_id_seq'::r
 --
 
 COPY authors (id, name) FROM stdin;
-8	Shirley Temple
-9	King Charles
-10	Shelly Strunk
-11	Nathan Frost
-12	Momoko Saunders
-13	Mulan
-15	Jennifer Morkunas
-14	Jake Ka
 \.
 
 
@@ -295,29 +287,6 @@ COPY authors (id, name) FROM stdin;
 --
 
 COPY authors_books (id, author_id, book_id) FROM stdin;
-1	1	2
-2	2	2
-3	1	2
-4	1	2
-5	1	1
-6	1	2
-7	2	4
-8	7	7
-9	4	8
-10	12	10
-11	9	11
-12	14	14
-13	14	16
-14	14	15
-15	14	17
-16	14	14
-17	14	18
-18	15	18
-19	9	18
-20	14	17
-21	14	15
-22	14	10
-23	14	12
 \.
 
 
@@ -340,12 +309,6 @@ SELECT pg_catalog.setval('authors_id_seq', 15, true);
 --
 
 COPY books (id, title) FROM stdin;
-9	The Wind That Shakes The Barley
-10	The Wind In The Willows
-11	Moby Dick
-12	The Dictionary
-15	SQL Basics
-17	The Age Of Android
 \.
 
 
@@ -391,15 +354,6 @@ SELECT pg_catalog.setval('copies_id_seq', 1, false);
 --
 
 COPY patrons (id, name, phone) FROM stdin;
-1	Sheilah Quimby	444-321-7242
-2	Sheilah Quimby	444-321-7242
-3	Sherry Alam	555-444-3333
-4	Susan	444-333-2222
-5	Ron Weasley	444-321-7242
-6	Lola	555-442-3333
-7	Nataliya	444-222-1112
-8	Ashley	333-333-2242
-9	Lola 2	444-321-7242
 \.
 
 

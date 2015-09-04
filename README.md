@@ -1,38 +1,36 @@
 # _Library Catalog_
 
-##### _Create a library catalog. Date of current version: 09/02/15_
+##### A little library catalog. Date of current version: 09/02/15
 
-#### By _**Diana Holland and Jennifer Morkunas**_
+#### By **Diana Holland and Jennifer Morkunas**
 
 ## Description
 
-Add books to authors and authors to books.
+In this little library, you can create a database of books that keeps track of author and title information. The database can support books with multiple authors, and authors with multiple books. We are currently building functionality for patrons to make checkouts, and to keep track of how many copies of a book exist.
 
 ## Setup
 
-* Clone or fork from github
-* Adjust settings in DB.java to work with your db setup
-* Create a database to_do
-* Run on gradle or on a server
-* Open in your browser!
+* Please have all Java developer tools ready, including the JDK.
+* This app uses Apache Spark and Velocity to handle its user interface.
+* You'll need to be able to run and compile Java. This app uses Gradle for that purpose. To run this project, first setup the local database. Then connect to this folder in terminal and type ```gradle run```.
 
-In PSQL:
+**To use the database included with this file, follow these instructions:**
 
-CREATE DATABASE library_catalog;
-\c library_catalog
-CREATE TABLE books (id SERIAL PRIMARY KEY, title VARCHAR);
-CREATE TABLE authors (id SERIAL PRIMARY KEY, name VARCHAR);
-CREATE TABLE authors_books (id SERIAL PRIMARY KEY, author_id INT, book_id INT);
-CREATE TABLE copies (id SERIAL PRIMARY KEY, book_id INT, checkedout BOOLEAN, checkout_date VARCHAR, due_date VARCHAR);
-CREATE TABLE checkouts (id SERIAL PRIMARY KEY, patron_id INT, copy_id INT);
-CREATE TABLE patrons (id SERIAL PRIMARY KEY, name VARCHAR);
-CREATE DATABASE library_catalog_test WITH TEMPLATE library_catalog;
+* Clone this git repository on your computer ```git clone https://github.com/theholla/library-catalog.git```
+* In terminal, start the PostgreSQL server by typing ```postgres``` and ```psql```
+* In psql, create a new database by typing ```CREATE DATABASE library_catalog;```
+* In another tab in terminal, connect to this project folder: ```cd path/to/this/folder```
+* In this tab, dump the database information from my sql file into your local database by typing the following code: ```psql library_catalog < library_catalog.sql```
+
+* To run tests, you can create a new test database in psql: ```CREATE DATABASE library_catalog_test WITH TEMPLATE library_catalog;```
+
+## Database Schema
+
+<img src="/src/main/resources/public/img/sql_schema.png">
 
 ## Technologies Used
 
-Java, Velocity Templating, Postgres Database, HTML and CSS
-
-
+Java, Apache Spark and Velocity templates, PostgreSQL Database, HTML5, and CSS
 
 ### Legal
 
