@@ -1,4 +1,4 @@
-<h1>Authors</h1>
+<h1>Favorite Authors</h1>
 
 #if ($editAuthor)
 Oops! Is this author's name incorrect?
@@ -9,22 +9,21 @@ Oops! Is this author's name incorrect?
 </form>
 #else
 
-<h4>Include a new author in the Lil'brary:</h4>
-
-<form action="/authors" method="post">
-  <label for="name">Add author:</label>
-  <input id="name" name="name" type="text">
-  <button type="submit" class="btn btn-success">Add author</button>
-</form>
-
+  <ol>
+    #foreach ($author in $authors)
+    <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+    #end
+    #end
+  </ol>
 
 <hr/>
 
-Authors:
-<ol>
-  #foreach ($author in $authors)
+<h2>Know of another great author?</h2>
 
-  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
-  #end
-  #end
-</ol>
+<h4>Suggest an author for the Lil'brary, and we'll do our best to add their books to our catalog.</h4>
+
+<form action="/authors" method="post">
+  <label for="name" class="sr-only">Add author:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit" class="btn btn-success">Add author</button>
+</form>

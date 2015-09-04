@@ -23,7 +23,7 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <form action='/add_authors' method='post'>
     <input id="book_id" name="book_id" type="hidden" value="$book.getId()">
-    <label for="author_id">Select a author</label>
+    <label for="author_id" class="sr-only">Select an author</label>
     <select id='author_id' name='author_id' type='text'>
       #foreach($author in $allAuthors)
         <option value="$author.getId()"> $author.getName() </option>

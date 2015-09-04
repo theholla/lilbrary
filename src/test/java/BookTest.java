@@ -8,13 +8,11 @@ public class BookTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-//Test whether the array is empty or nor
   @Test
   public void all_emptyAtFirst() {
     assertEquals(Book.all().size(), 0);
   }
 
-// Test for override objects
   @Test
   public void equals_returnsTrueIfNamesAretheSame() {
     Book firstBook = new Book("Huckleberry Finn");

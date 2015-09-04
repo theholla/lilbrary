@@ -12,7 +12,7 @@
           <tr>
             <td><a href="/copies/$copy.getId()">$patronCopy.getCopies()</a><br>
 
-              
+
             <td><a href=""><span class="glyphicon glyphicon-ok"></span></a>
           </tr>
         #end
@@ -22,16 +22,19 @@
 
 
       <h4>History   <span class="glyphicon glyphicon-list"></span></h4>
+      <h4>Check something out<span class="glyphicon glyphicon-book"></span></h4>
 
-      <!-- Choose a book to request and check out -->
-      <h4>Check out a book by clicking the check below<span class="glyphicon glyphicon-book"></span></h4>
-<br>
+<hr/>
+
+
+      <!-- Choose a book to request and check it out -->
+
       <h2>Library Catalog</h2>
 
           <table border="2" class="table table-hover">
             <th>Books</th>
             <th>Authors</th>
-            <th>Checkout</th>
+            <th>Request</th>
             <tbody>
             #foreach ($book in $books)
             <tr>

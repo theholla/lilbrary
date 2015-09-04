@@ -23,8 +23,8 @@ CREATE DATABASE library_catalog;
 CREATE TABLE books (id SERIAL PRIMARY KEY, title VARCHAR);
 CREATE TABLE authors (id SERIAL PRIMARY KEY, name VARCHAR);
 CREATE TABLE authors_books (id SERIAL PRIMARY KEY, author_id INT, book_id INT);
-CREATE TABLE copies (id SERIAL PRIMARY KEY, book_id INT, available BOOLEAN);
-CREATE TABLE checkouts (id SERIAL PRIMARY KEY, patron_id INT, copy_id INT, checkout_date VARCHAR, due_date VARCHAR);
+CREATE TABLE copies (id SERIAL PRIMARY KEY, book_id INT, checkedout BOOLEAN, checkout_date VARCHAR, due_date VARCHAR);
+CREATE TABLE checkouts (id SERIAL PRIMARY KEY, patron_id INT, copy_id INT);
 CREATE TABLE patrons (id SERIAL PRIMARY KEY, name VARCHAR);
 CREATE DATABASE library_catalog_test WITH TEMPLATE library_catalog;
 

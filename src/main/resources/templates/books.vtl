@@ -1,46 +1,49 @@
-<h1>Books</h1>
+<h1>Catalog</h1>
 
 #if ($editBook)
-    Oops! Did we have the wrong book title?
-    <form action="/books/$editBook.getId()/edit" method="post">
-      <label for="title">Please type the correct title:</label>
-      <input id="title" name="title" type="text" value="$editBook.getTitle()">
-      <button type="submit" class="btn btn-primary">Edit book</button>
-    </form>
+Oops! Did we have the wrong book title?
+<form action="/books/$editBook.getId()/edit" method="post">
+  <label for="title">Please type the correct title:</label>
+  <input id="title" name="title" type="text" value="$editBook.getTitle()">
+  <button type="submit" class="btn btn-primary">Edit book</button>
+</form>
 #else
 
-  <h4>Add a new book to the Lil'brary:</h4>
-
-    <form action="/books" method="post">
-      <label for="title">Book Title</label>
-      <input id="title" name="title" type="text">
-      <button type="submit" class="btn btn-primary">Add book</button>
-    </form>
+<table border="2" class="table table-hover">
+  <th>Title</th>
+  <th>Author</th>
+  <th>Edit</th>
+  <th>Delete</th>
+  <tbody>
+    #foreach ($book in $books)
+    <tr>
+      <td><a href="/books/$book.getId()">$book.getTitle()</a></td>
+      <td>
+        #if($book.getAuthors())
+        <ul>
+          #foreach($author in $book.getAuthors())
+          <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+          #end
+        </ul>
+        #end
+      </td>
+      <td><a href="/books/$book.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+        <td><a href="/books/$book.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+    </tr>
+    #end
+  </tbody>
+</table>
 
 <hr/>
 
-    <table border="2" class="table table-hover">
-      <th>Current books</th>
-      <th>Authors</th>
-      <th>Edit</th>
-      <th>Delete</th>
-      <tbody>
-      #foreach ($book in $books)
-      <tr>
-        <td><a href="/books/$book.getId()">$book.getTitle()</a></td>
-          <td>
-            #if($book.getAuthors())
-              <ul>
-                #foreach($author in $book.getAuthors())
-                  <li><a href="/authors/$author.getId()">$author.getName()</a></li>
-                #end
-              </ul>
-            #end
-          </td>
-          <td><a href="/books/$book.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
-          <td><a href="/books/$book.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-        </tr>
-        #end
-    </tbody>
-  </table>
+<h2>Can't find what you were looking for?</h2>
+
+<h4>Donate a book to the Lil'brary:</h4>
+
+<form action="/books" method="post">
+  <label for="title">Book Title</label>
+  <input id="title" name="title" type="text">
+  <button type="submit" class="btn btn-primary">Add book</button>
+</form>
+
 #end

@@ -8,13 +8,15 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <hr/>
 
-#if($author.getBooks())
-  <p>This author has the following books in our library:</p>
+#if($author.getBooks().size() !=0)
+  <h4>This author has the following books in our library:</h4>
   <ol>
     #foreach($book in $author.getBooks())
       <li><a href="/books/$book.getId()">$book.getTitle()</a></li>
     #end
   </ol>
+#else
+  <h4>None of this author's books are represented in the library. Consider donating one.</h4>
 #end
 
 <hr/>
@@ -23,7 +25,7 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <form action='/add_books' method='post'>
     <input id="author_id" name="author_id" type="hidden" value="$author.getId()">
-    <label for="book_id">Select a book</label>
+    <label for="book_id" class="sr-only">Select a book</label>
     <select id='book_id' name='book_id' type='text'>
       #foreach($book in $allBooks)
         <option value="$book.getId()"> $book.getTitle() </option>

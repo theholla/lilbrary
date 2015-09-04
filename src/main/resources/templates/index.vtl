@@ -3,12 +3,44 @@
 </head>
 <body>
     <h1 class="text-center">... a little library catalog</h1>
+
+
+    <!-- Patron log in form -->
+
+    <form action="/patron/:id" method='post'>
+      <input id="patronId" name="patronId" type="hidden" value="$patron.getId()">
+
+        <div class="form-group row">
+            <div class="col-xs-3">
+              <h3>Get a Lil'brary card</h3>
+                <label for="name" class="sr-only">Name</label>
+                <input id="name" name="name" type="text" class="form-control" id="" placeholder="name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-3">
+                <label for="phone" class="sr-only">Phone number</label>
+                <input id="phone" name="phone" type="text" class="form-control" id="" placeholder="phone">
+            </div>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Remember me on this computer
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default">Join</button>
+    </form>
+
+<hr/>
+
+
+
     <!-- Welcome -->
 
-    <h4>Member roster:</h4>
+    <h3>Connect with other Lil'brary members:</h3>
 
-    <table border="2" class="table table-hover">
-      <th>Patron</th>
+    <table border="0" class="table table-hover">
+      <th>Member</th>
       <th>Phone</th>
       <th>Update Information</th>
       <th>Quit the Lil'brary</th>
@@ -17,41 +49,14 @@
       <tr>
         <td><a href="/patrons/$patron.getId()">$patron.getName()</a></td>
           <td><a href="/patrons/$patron.getId()">$patron.getPhone()</a></td>
-          <td><a href="/books/$patron.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
-          <td><a href="/books/$patron.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td><a href="/patrons/$patron.getId()/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+          <td><a href="/patrons/$patron.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
       #end
     </tbody>
   </table>
 
-    <!-- Patron log in form -->
-
-            <form action="/patron/:id" method='post'>
-              <input id="patronId" name="patronId" type="hidden" value="$patron.getId()">
-
-                <div class="form-group row">
-                  <h3>Get a Lil'brary card</h3>
-                    <div class="col-xs-3">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" class="form-control" id="" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-xs-3">
-                        <label for="phone">Phone number</label>
-                        <input id="phone" name="phone" type="text" class="form-control" id="" placeholder="">
-                    </div>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Remember me on this computer
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default">Join</button>
-            </form>
-
-        <hr/>
-
+<hr/>
         <!-- Librarian Portal -->
 
             <h3>Librarian Portal</h3>
