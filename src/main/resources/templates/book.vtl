@@ -12,7 +12,9 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
   <p>This book was written by:</p>
   <ul>
     #foreach($author in $book.getAuthors())
-      <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+      #if ($author.getName())
+        <li><a href="/authors/$author.getId()">$author.getName()</a></li>
+      #end
     #end
   </ul>
 #end

@@ -88,7 +88,7 @@ public class Book {
 
   public ArrayList<Author> getAuthors() {
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT author_id FROM authors_books WHERE book_id = :book_id";
+      String sql = "SELECT DISTINCT author_id FROM authors_books WHERE book_id = :book_id";
       List<Integer> authorIds = con.createQuery(sql)
       .addParameter("book_id", this.getId())
       .executeAndFetch(Integer.class);

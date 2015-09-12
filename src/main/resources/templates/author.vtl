@@ -12,7 +12,9 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
   <h4>This author has the following books in our library:</h4>
   <ol>
     #foreach($book in $author.getBooks())
-      <li><a href="/books/$book.getId()">$book.getTitle()</a></li>
+      #if ($book.getTitle())
+        <li><a href="/books/$book.getId()">$book.getTitle()</a></li>
+      #end
     #end
   </ol>
 #else
